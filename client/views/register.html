@@ -1,0 +1,47 @@
+<div class="col-sm-6 col-sm-offset-3">
+    <h1><span class="glyphicon glyphicon-log-in"></span> &nbsp; Register</h1>
+    <div class="alert alert-danger hide"></div>
+    <form novalidate name="registrationFrom" ng-submit="vm.registerationHandler()" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" ng-required="true" ng-minlength='2' class="form-control" ng-model="vm.name">
+            <div>
+                <span ng-show="registrationFrom.name.$dirty && registrationFrom.name.$error.required" class="text-danger">Name must be Entered</span>
+                <span ng-show="registrationFrom.name.$dirty && registrationFrom.name.$error.minlength" class="text-danger">Name must be Minimum 2 Characters</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" ng-required="true" class="form-control" ng-model="vm.email">
+            <div>
+                <span ng-show="registrationFrom.email.$dirty && registrationFrom.email.$error.required" class="text-danger">Email must be Entered</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <input type="text" name="country" ng-required="true" class="form-control" ng-model="vm.country">
+            <div>
+                <span ng-show="registrationFrom.country.$dirty && registrationFrom.country.$error.required" class="text-danger">Country must be Entered</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>username</label>
+            <input type="text" name="username" ng-required="true" ng-minlength='1' class="form-control" ng-model="vm.username">
+            <div>
+                <span ng-show="registrationFrom.username.$dirty && registrationFrom.username.$error.required" class="text-danger">Username must be Entered</span>
+                <span ng-show="registrationFrom.username.$dirty && registrationFrom.username.$error.minlength" class="text-danger">Username must be Minimum 2 Characters</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" ng-required="true" class="form-control" ng-model="vm.password">
+            <div>
+                <span ng-show="registrationFrom.password.$dirty && registrationFrom.password.$error.required" class="text-danger">Password must be Entered</span>
+            </div>
+        </div>
+        <button type="submit" ng-disabled="registrationFrom.$invalid" class="btn btn-warning">Signup</button>
+    </form>
+    <hr>
+    <p>Already have an account? <a ui-sref="login">Login</a></p>
+    <p>Or go <a ui-sref="home">home</a>.</p>
+</div>

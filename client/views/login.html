@@ -1,0 +1,30 @@
+<div class="col-sm-6 col-sm-offset-3">
+    <h1><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</h1>
+    <div class="alert alert-danger hide"></div>
+    <form novalidate name="loginForm" ng-submit="vm.loginHandler()" method="post">
+        <div ng-show="vm.show === true" class="alert alert-danger">
+            <span>{{vm.message}}</span>
+        </div>
+        <div class="form-group">
+            <label>Username</label>
+            <input name="username" ng-required="true" ng-minlength="2" type="text" class="form-control" ng-model="vm.username">
+            <div>
+                <span class="text-danger" ng-show="loginForm.username.$dirty && loginForm.username.$error.required">Username must be Entered</span>
+                <span class="text-danger" ng-show="vm.submitted">Username is required</span>
+                <span class="text-danger" ng-show="loginForm.username.$dirty && loginForm.username.$error.minlength">Username must be Minimum of 2 Characters</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input name="password" ng-required="true" type="password" class="form-control" ng-model="vm.password">
+            <div>
+                <span class="text-danger" ng-show="vm.submitted">Passowrd is required</span>
+                <span class="text-danger" ng-show="loginForm.password.$dirty && loginForm.password.$error.required">Passowrd must be Entered</span>
+            </div>
+        </div>
+        <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-warning">Login</button>
+    </form>
+    <hr>
+    <p>Need an account? <a ui-sref="register">Signup</a></p>
+    <p>Or go <a ui-sref="home">home</a>.</p>
+</div>

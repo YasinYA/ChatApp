@@ -1,0 +1,56 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 well">
+			<div class="row">
+				<div class="col-md-12">
+					<img src="http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg" width="80" height="80" alt="profile picture" class="center-block img-rounded img-responsive thumbnail">
+					<div class="row">
+						<div class="col-md-6 text-center">
+							<h5>Name : {{vm.name}}</h5>
+						</div>
+						<div class="col-md-6 text-center">
+							<h5>Messages: 12</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Edit Profile</h2>
+				</div>
+				<div class="col-md-12">
+					<form class="form-horizontal">
+						<div class="form-group row">
+							<div class="col-md-2">
+								<label class="control-label">Name</label>
+							</div>
+							<div class="col-md-6">
+								<input type="text" name="name" ng-model="vm.name" class="form-control">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-2">
+								<label class="control-label">Email</label>
+							</div>
+							<div class="col-md-6">
+								<input type="text" name="Email" ng-model="vm.email" class="form-control">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-md-2">
+								<label class="control-label">Country</label>
+							</div>
+							<div class="col-md-6">
+								<input type="text" name="Country" ng-model="vm.country" class="form-control">
+							</div>
+						</div>
+						<br>
+						<button type="button" class="btn btn-primary">Save</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
