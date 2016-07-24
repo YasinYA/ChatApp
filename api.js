@@ -72,7 +72,8 @@ router
         failureRedirect : '/#/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }), function(req, res) {
-		res.json({user: req.user});
+      // if this function get called, it means the user authentication is successfull
+			  res.json({message: 'Success', userSession: req.session});
 	});
 
 router
@@ -84,7 +85,7 @@ router
         failureRedirect : '/#/register', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }), function(req, res){
-		res.json({user: req.user});
+		res.json({message: 'Success', userSession: req.session});
     });
 
 router
@@ -103,7 +104,12 @@ router
 	////////////////////
 	.route('/profile')
 	.get(loggedIn, function(req, res) {
-		res.json({user: req.user, success: 'Authorized'});
+		res.json({
+      name: req.user.name,
+      email: req.user.email,
+      country: req.user.country,
+      success: 'Authorized'
+    });
 	});
 
 router

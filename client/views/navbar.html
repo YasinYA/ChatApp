@@ -14,13 +14,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ng-show="users" class="active"><a ui-sref="profile">Profile <span class="sr-only">(current)</span></a></li>
-        <li ng-show="users"><a ui-sref="chat">Chat</a></li>
+        <li ng-show="user" class="active"><a ui-sref="profile">Profile <span class="sr-only">(current)</span></a></li>
+        <li ng-show="user"><a ui-sref="chat">Chat</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="users"><a ui-sref="login">Login</a></li>
-        <li ng-show="users"><a href="/api/logout">Logout</a></li>
-        <li ng-hide="users"><a ui-sref="register">Register</a></li>
+        <li ng-hide="user"><a ui-sref="login">Login</a></li>
+        <li ng-show="user"><a ui-sref="logout">Logout</a></li>
+        <li ng-hide="user"><a ui-sref="register">Register</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
