@@ -18,16 +18,5 @@ angular.module('ChatApp')
 		return $resource('/api/chat', {
 			get: {method: 'GET', isArray: false}
 		});
-	
 	}]);
-	// .factory('Socket', [function () {
-	// 	var socket = io.connect();
-	// 	return {
-	// 		on : function(eventName, callback) {
-	// 			socket.on(eventName, callback);
-	// 		},
-	// 		emit : function(eventName, chatData, callback) {
-	// 			socket.emit(eventName, chatData, callback);
-	// 		}
-	// 	};
-	// }]);
+	
