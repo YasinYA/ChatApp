@@ -52,14 +52,29 @@ angular.module('ChatApp')
     .controller('ChatController', ['Chat', '$scope', '$rootScope', function (Chat, $scope, $rootScope) {
         var vm = this;
         vm.user = Chat.get();
+        vm.user.$promise.then(function(res){
+          vm.name = res.userName;
+          vm.userId = res.userId;
+          vm.username = res.username
+        });
         vm.greater = '';
         var socket = io.connect();
-        socket.on('welcome', angular.bind(this, function(data) {
+        socket.on('welcome', function(data) {
             $scope.$apply(function() {
                 vm.message = data.msg;
                 vm.greater = data.sender;
             });
-        }));
-        vm.chatHandler = function() {};
+        });
+        
+        vm.chatHandler = function() {
+          socket.emit('chat', {
+            name: vm.name,
+            userId: vm.userId,
+            message: vm.text
+          });
+          socket.on('message', function(data) {
+            console.log(data);
+          });
+        };
     }]);
     

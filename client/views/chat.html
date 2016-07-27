@@ -3,9 +3,9 @@
 		<div class="col-md-4 well">
 			<h2>Online Users</h2>
 			<ul>
-				<li class="users"><span>{{vm.user.username}}</span></li>
-				<li class="users"><span>{{vm.user.userId}}</span></li>
-				<li class="users"><span>{{vm.user.userName}}</span></li>
+				<li class="users"><span>{{vm.name}}</span></li>
+				<li class="users"><span>{{vm.userId}}</span></li>
+				<li class="users"><span>{{vm.username}}</span></li>
 			</ul>
 		</div>
 		<div class="col-md-8">
@@ -20,7 +20,7 @@
 						<label class="control-label">Enter Message</label>
 					</div>
 					<div class="col-md-6">
-						<textarea class="form-control" ng-model="message" placeholder="Type a message"></textarea>
+						<textarea class="form-control" ng-model="vm.text" placeholder="Type a message"></textarea>
 					</div>
 				</div>
 				<div class="row">
