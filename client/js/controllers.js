@@ -65,7 +65,6 @@ angular.module('ChatApp')
                 vm.greater = data.sender;
             });
         });
-        
         vm.chatHandler = function() {
           socket.emit('chat', {
             name: vm.name,
@@ -76,5 +75,6 @@ angular.module('ChatApp')
             console.log(data);
           });
         };
+
     }]);
     

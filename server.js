@@ -17,6 +17,7 @@ console.log('Server is running on port 3000');
 
 
 io.on('connection', function(socket) {
+    console.log('Connected');
     socket.emit('welcome', {sender: "Greater", msg: "Welcome to the chat"});
     socket.on('chat', function(data){
       var chatData = {
@@ -24,13 +25,12 @@ io.on('connection', function(socket) {
           userId : data.userId,
           message : data.message
       };
-
       Messages.saveMessages(chatData, function(err, msg) {
           if(err) {
               throw err;
           }
           console.log('Done!');
       });
-      socket.emit('message', {data: 'Done!'});
+      socket.emit('message', {'success': 'Done!'});
     });
 });
