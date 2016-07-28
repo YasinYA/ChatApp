@@ -75,6 +75,5 @@ angular.module('ChatApp')
             console.log(data);
           });
         };
-
     }]);
     
