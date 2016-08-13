@@ -19,7 +19,7 @@ console.log('Server is running on port 3000');
 io.on('connection', function(socket) {
     console.log('Connected');
     socket.emit('welcome', {sender: "Greater", msg: "Welcome to the chat"});
-    socket.on('chat', function(data){
+    socket.on('save', function(data){
       var chatData = {
           name : data.name,
           userId : data.userId,
@@ -30,7 +30,25 @@ io.on('connection', function(socket) {
               throw err;
           }
           console.log('Done!');
+        socket.emit('allMessages', msg);
       });
-      socket.emit('message', {'success': 'Done!'});
+    });
+    // i don't know why i need two event for send messages
+    socket.on('allMessages', function(msgs) {
+      Messages.getMessages(function(err, data) {
+        if(err) {
+          throw err;
+        }
+        console.log('Done!');
+        msgs = data;
+      });
+    });
+
+    Messages.getMessages(function(err, data) {
+      if(err) {
+        throw err;
+      }
+      console.log('Done!');
+      socket.emit('msgs', data);
     });
 });
