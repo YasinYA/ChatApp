@@ -36,7 +36,7 @@ angular.module('ChatApp')
                     $state.go('register');
                 }
             });
-        }
+        };
     }])
     .controller('ProfileController', ['Profile', '$rootScope', '$http', '$cookieStore', '$state', function (Profile, $rootScope, $http, $cookieStore, $state) {
         var vm = this;
@@ -49,17 +49,38 @@ angular.module('ChatApp')
             }
         });
     }])
-    .controller('ChatController', ['Chat', '$scope', '$rootScope', function (Chat, $scope, $rootScope) {
+    .controller('ChatController', ['Chat', '$scope', function (Chat, $scope) {
         var vm = this;
+        vm.messages = [];
         vm.user = Chat.get();
+        vm.user.$promise.then(function(res){
+          vm.name = res.userName;
+          vm.userId = res.userId;
+          vm.username = res.username;
+        });
         vm.greater = '';
         var socket = io.connect();
-        socket.on('welcome', angular.bind(this, function(data) {
+        socket.on('welcome', function(data) {
             $scope.$apply(function() {
                 vm.message = data.msg;
                 vm.greater = data.sender;
             });
-        }));
-        vm.chatHandler = function() {};
+        });
+        vm.chatHandler = function() {
+          socket.emit('save', {
+            name: vm.name,
+            userId: vm.userId,
+            message: vm.text
+          });
+        };
+        socket.on('allMessages', function(data) {
+          $scope.$apply(function() {
+              vm.messages.push(data);
+          });
+        });
+        socket.on('msgs', function(data) {
+          $scope.$apply(function() {
+            vm.messages = data;
+          });
+        });
     }]);
-    

@@ -38,7 +38,7 @@ function loggedIn(req, res, next) {
 	} else {
 		res.redirect('/admin');
 	}
-};
+}
 
 //##########################//
 //	Router Configuration

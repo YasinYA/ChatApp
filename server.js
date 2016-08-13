@@ -10,26 +10,45 @@ var Messages = require('./models/messages.js');
 app.use(express.static(__dirname + '/client/'));
 app.use('/api/', api);
 app.get("*", function(req, res) {
-	res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '/client/index.html');
 });
 server.listen(3000);
 console.log('Server is running on port 3000');
 
 
 io.on('connection', function(socket) {
-	socket.emit('welcome', {sender: "Greater", msg: "Welcome to the chat"});
-	socket.on('chat', function(data){
-		var chatData = {
-			name : data.name,
-			userId : data.userId,
-			message : data.message
-		};
+    console.log('Connected');
+    socket.emit('welcome', {sender: "Greater", msg: "Welcome to the chat"});
+    socket.on('save', function(data){
+      var chatData = {
+          name : data.name,
+          userId : data.userId,
+          message : data.message
+      };
+      Messages.saveMessages(chatData, function(err, msg) {
+          if(err) {
+              throw err;
+          }
+          console.log('Done!');
+        socket.emit('allMessages', msg);
+      });
+    });
+    // i don't know why i need two event for send messages
+    socket.on('allMessages', function(msgs) {
+      Messages.getMessages(function(err, data) {
+        if(err) {
+          throw err;
+        }
+        console.log('Done!');
+        msgs = data;
+      });
+    });
 
-		Messages.saveMessages(chatData, function(err, msg) {
-			if(err) {
-				throw err;
-			}
-			console.log('Done!');
-		});
-	});
+    Messages.getMessages(function(err, data) {
+      if(err) {
+        throw err;
+      }
+      console.log('Done!');
+      socket.emit('msgs', data);
+    });
 });

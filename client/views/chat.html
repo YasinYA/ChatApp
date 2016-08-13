@@ -3,29 +3,29 @@
 		<div class="col-md-4 well">
 			<h2>Online Users</h2>
 			<ul>
-				<li class="users"><span>{{vm.user.username}}</span></li>
-				<li class="users"><span>{{vm.user.userId}}</span></li>
-				<li class="users"><span>{{vm.user.userName}}</span></li>
+				<li class="users"><span>{{vm.name}}</span></li>
+				<li class="users"><span>{{vm.userId}}</span></li>
+				<li class="users"><span>{{vm.username}}</span></li>
 			</ul>
 		</div>
 		<div class="col-md-8">
 			<h2>Messages</h2>
-			<div class="well">
-				<small class="text-info">{{vm.greater}}</small>
-				<p>{{vm.message}}</p>	
+			<div class="well" ng-repeat="msg in vm.messages">
+				<small class="text-info">{{msg.name}}</small>
+				<p>{{msg.message}}</p>
 			</div>
-			<form class="form-horizontal" ng-submit="chatHandler()">
+			<form class="form-horizontal">
 				<div class="form-group row">
 					<div class="col-md-2">
 						<label class="control-label">Enter Message</label>
 					</div>
 					<div class="col-md-6">
-						<textarea class="form-control" ng-model="message" placeholder="Type a message"></textarea>
+						<textarea class="form-control" ng-model="vm.text" placeholder="Type a message"></textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
-						<button type="button" class="btn btn-primary">Send</button>
+						<button type="button" ng-click="vm.chatHandler()" class="btn btn-primary">Send</button>
 					</div>
 				</div>
 			</form>

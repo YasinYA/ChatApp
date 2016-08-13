@@ -5,3 +5,7 @@
 .users {
 	margin-top: 20px;
 }
+
+nav.navbar {
+	border-radius: 0;
+}
