@@ -73,12 +73,8 @@ angular.module('ChatApp')
             message: vm.text
           });
         };
-        socket.on('allMessages', function(data) {
-          $scope.$apply(function() {
-              vm.messages.push(data);
-          });
-        });
         socket.on('msgs', function(data) {
+          console.log(data);
           $scope.$apply(function() {
             vm.messages = data;
           });

@@ -30,17 +30,13 @@ io.on('connection', function(socket) {
               throw err;
           }
           console.log('Done!');
-        socket.emit('allMessages', msg);
-      });
-    });
-    // i don't know why i need two event for send messages
-    socket.on('allMessages', function(msgs) {
-      Messages.getMessages(function(err, data) {
-        if(err) {
-          throw err;
-        }
-        console.log('Done!');
-        msgs = data;
+          Messages.getMessages(function(err, data) {
+            if(err) {
+              throw err;
+            }
+            console.log('Emitted!');
+            socket.emit('msgs', data);
+          });
       });
     });
 
